@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .container:hover {
+            transform: translateY(-2px);
+        }
+
+        .error-code {
+            font-size: 72px;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .error-detail {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .confession {
+            display: none;
+            text-align: left;
+        }
+
+        .confession h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .confession p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .heartbeat {
+            display: none;
+        }
+
+        .heartbeat .error-code {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="clickable">
+        <div id="error-state">
+            <div class="error-code">404</div>
+            <div class="error-message">Page Not Found</div>
+            <div class="error-detail">
+                The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+            </div>
+            <div class="hint">(click to retry)</div>
+        </div>
+
+        <div id="heartbeat-state" class="heartbeat">
+            <div class="error-code">💓</div>
+            <div class="error-message">Error... Heart beating...</div>
+            <div class="error-detail">
+                Something unexpected is happening...
+            </div>
+            <div class="hint">(click once more)</div>
+        </div>
+
+        <div id="confession-state" class="confession">
+            <h2>💌 Confession</h2>
+            <p>Hello saki!! Kakainis, i honestly hate myself for doing this because i already said my goodbyes and shittttt, it probably looks so bad for you na😭😭</p>
+            
+            <p>But, i just wanted to let you know that i was yvie..... Im not sure if you got me right in your guesses...</p>
+            
+            <p>Well i wanted to say it because, i probably look dumb if you actually knew me and i kept chatting here as if i know nothing. I wish i knew what i wanted, but i definitely know what i don't want and that is feeling like i was lying(?).</p>
+            
+            <p>I didn't expect that it would go down like that eh, i just wanted to send that confession because i wanted to feel free but the stalker thingy made it more complicated which i realized after i had followed you...</p>
+            
+            <p>But thats all... I hope you dont hate or block me after this... But then again, its generally your choice.</p>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        const container = document.getElementById('clickable');
+        const errorState = document.getElementById('error-state');
+        const heartbeatState = document.getElementById('heartbeat-state');
+        const confessionState = document.getElementById('confession-state');
+
+        container.addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                // First click - do nothing visible, just count
+                return;
+            } else if (clickCount === 2) {
+                // Second click - show heartbeat message
+                errorState.style.display = 'none';
+                heartbeatState.style.display = 'block';
+            } else if (clickCount === 3) {
+                // Third click - show confession
+                heartbeatState.style.display = 'none';
+                confessionState.style.display = 'block';
+                container.style.cursor = 'default';
+            }
+        });
+    </script>
+</body>
+</html>
